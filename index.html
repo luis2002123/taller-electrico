@@ -142,6 +142,76 @@
             font-size: 1rem;
             outline: none;
         }
+
+        /* Responsividad para pantallas más pequeñas */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            header img {
+                width: 40px;
+                height: 40px;
+            }
+            h1 {
+                font-size: 1.5rem;
+                margin-top: 10px;
+            }
+            .row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            h2 {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 5px;
+            }
+            .text-box {
+                width: 100%;
+                margin-left: 0;
+            }
+            .list-section h2 {
+                font-size: 1.2rem;
+            }
+            ul li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .price-input {
+                width: 100%;
+            }
+            .total-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .total-section input {
+                width: auto;
+            }
+            .date-section input {
+                width: 100%;
+            }
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .footer img {
+                width: 25px;
+                height: 25px;
+            }
+            .footer input {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+            .price-input {
+                width: 80px;
+            }
+        }
     </style>
     <script>
         function addVisibleItems() {
@@ -228,7 +298,6 @@
                 <div class="footer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
                     <span>73033679</span>
-       
                 </div>
             </div>
         </div>
