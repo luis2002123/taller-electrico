@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Simple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            justify-content: space-between;
+        }
+        header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            justify-content: flex-start;
+        }
+        h2 {
+            font-size: 1rem;
+            color: #555;
+            width: 25%;
+            margin: 0;
+            text-align: left;
+        }
+        .text-box {
+            width: 60%;
+            padding: 5px;
+            margin-left: -70px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .text-box textarea {
+            width: 100%;
+            height: 20px;
+            border: none;
+            background: none;
+            resize: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        .list-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .list-section h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            display: inline-block;
+            padding-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        ul li input[type="text"] {
+            width: 70%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+        .price-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+        .total-section {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .total-section input {
+            width: 80px;
+            height: 20px;
+            font-size: 1rem;
+            padding: 5px;
+            text-align: right;
+            margin-right: 20px;
+        }
+        .date-section {
+            margin-bottom: 20px;
+        }
+        .date-section input {
+            font-size: 1rem;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 150px;
+            text-align: center;
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+        .footer img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .footer input {
+            width: 150px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+    </style>
+    <script>
+        function addVisibleItems() {
+            const items = document.querySelectorAll('ul li');
+            items.forEach((item, index) => {
+                if (index < 6) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+
+        function calculateTotal() {
+            const prices = document.querySelectorAll(".price-input");
+            let total = 0;
+            prices.forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                total += value;
+            });
+            document.getElementById("totalPrice").value = total.toFixed(2) + " bs";
+        }
+
+        function setBoliviaDate() {
+            const dateInput = document.getElementById("currentDate");
+            const now = new Date();
+
+            // Ajuste para la zona horaria GMT-4 (Bolivia)
+            now.setHours(now.getHours() - (now.getTimezoneOffset() / 60) - 4);
+
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            dateInput.value = `${year}-${month}-${day}`;
+        }
+
+        window.onload = () => {
+            setBoliviaDate();
+            addVisibleItems();
+            const priceInputs = document.querySelectorAll(".price-input");
+            priceInputs.forEach(input => input.addEventListener("input", calculateTotal));
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://static.vecteezy.com/system/resources/previews/021/448/293/non_2x/tools-icon-settings-illustration-sign-repair-symbol-or-logo-vector.jpg" alt="Logo Izquierda">
+
+            <h1>Taller electrico Cruz</h1>
+            <img src="https://www.shutterstock.com/image-vector/electric-motor-vector-icon-isolated-260nw-2032007741.jpg" alt="Logo Derecha" style="width: 120px; height: 120px;">
+        </header>
+
+        <div class="date-section">
+            <label for="currentDate">Fecha Actual:</label>
+            <input type="text" id="currentDate" readonly>
+        </div>
+
+        <div class="row">
+            <h2>Nombre</h2>
+            <div class="text-box">
+                <textarea placeholder="..."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Marca y modelo</h2>
+            <div class="text-box">
+                <textarea placeholder="..."></textarea>
+            </div>
+        </div>
+
+        <div class="list-section">
+            <h2>Detalles</h2>
+            <ul>
+                <li><input type="text" placeholder=""><input type="" class="price-input" placeholder=""></li>
+                <li><input type="text" placeholder=""><input type="" class="price-input" placeholder=""></li>
+                <li><input type="text" placeholder=""><input type="" class="price-input" placeholder=""></li>
+                <li><input type="text" placeholder=""><input type="" class="price-input" placeholder=""></li>
+                <li><input type="text" placeholder=""><input type="" class="price-input" placeholder=""></li>
+                <li><input type="text" placeholder=""><input type="" class="price-input" placeholder=""></li>
+            </ul>
+            <div class="total-section">
+                <label for="totalPrice">Total:</label>
+                <input type="text" id="totalPrice" value="bs" readonly>
+                <div class="footer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+                    <span>73033679</span>
+       
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
